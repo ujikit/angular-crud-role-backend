@@ -1,0 +1,11 @@
+CREATE TABLE users (
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+username VARCHAR(60) NOT NULL,
+password VARCHAR(60) NOT NULL,
+role CHAR(1) NOT NULL,
+created_at TIMESTAMP,
+updated_at TIMESTAMP
+)
+$2a$10$dyIvh1mU41.k5Y7KFVkGh.FpkIplgrvqDbNGad0KaqKn.jJ4fA3f6
+
+insert into users (username, password, role, created_at, updated_at) values ('ujikit', '$2a$10$dyIvh1mU41.k5Y7KFVkGh.FpkIplgrvqDbNGad0KaqKn.jJ4fA3f6', 1, NOW(), NOW());
