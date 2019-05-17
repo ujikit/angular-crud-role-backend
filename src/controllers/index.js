@@ -13,19 +13,19 @@ exports.index = function(req, res) {
 
 	var sql = `SELECT * FROM users`
 	connection.query(sql, (err, rows) => {
-    // if (err) { throw err }
-		// try {
-		// 	return res.status(200).json({
-		// 		"status": "success",
-		// 		"data: ": +JSON.stringify()
-		// 	})
-		// } catch (e) {
-    //   if (e) { throw e }
-		// 	return res.status(400).json({
-		// 		"status": "error",
-		// 		"data": `Error happened: ${JSON.stringify(e)}`
-		// 	})
-		// }
-    console.log(rows);
+    if (err) { throw err }
+		try {
+		let data = "tes"
+			return res.status(200).json({
+				status: "success",
+				data: rows[0].id
+			})
+		} catch (e) {
+      if (e) { throw e }
+			return res.status(400).json({
+				"status": "error",
+				"data": `Error happened: ${JSON.stringify(e)}`
+			})
+		}
 	})
 }
