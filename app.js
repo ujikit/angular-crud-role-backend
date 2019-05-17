@@ -5,8 +5,8 @@ const mysql = require('mysql')
 const bodyParser = require("body-parser")
 
 // Models
-const index = require('./src/controllers/index')
-const auth = require('./src/controllers/auth')
+const product = require('./src/controllers/ProductController')
+const auth = require('./src/controllers/AuthController')
 
 app.use(connection(mysql, {
 	host: 'localhost',
@@ -34,7 +34,7 @@ app.use(function(req, res, next) {
 // routes
 app.post('/login', auth.login)
 app.post('/register', auth.register)
-app.get('/', index.index)
+app.get('/', product.index)
 
 //Middleware
 const listener = app.listen(8888, function() {

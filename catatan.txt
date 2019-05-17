@@ -1,11 +1,40 @@
 CREATE TABLE users (
-id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-username VARCHAR(60) NOT NULL,
-password CHAR(60) NOT NULL,
-role CHAR(1) NOT NULL,
-created_at TIMESTAMP,
-updated_at TIMESTAMP
+	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	username VARCHAR(60) NOT NULL,
+	password CHAR(60) NOT NULL,
+	role CHAR(1) NOT NULL,
+	created_at TIMESTAMP,
+	updated_at TIMESTAMP
 )
-$2a$10$dyIvh1mU41.k5Y7KFVkGh.FpkIplgrvqDbNGad0KaqKn.jJ4fA3f6
 
+CREATE TABLE products (
+	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	name_product VARCHAR(60) NOT NULL,
+	price_product VARCHAR(60) NOT NULL,
+	created_at_product TIMESTAMP,
+	updated_at_product TIMESTAMP
+)
+
+CREATE TABLE transactions (
+	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	id_user_transaction INT(6) UNSIGNED,
+	id_product_transaction INT(6) UNSIGNED,
+	created_at_transaction TIMESTAMP,
+	updated_at_transaction TIMESTAMP,
+	FOREIGN KEY (id_user_transaction) REFERENCES users(id),
+	FOREIGN KEY (id_product_transaction) REFERENCES products(id)
+)
+
+== users
 insert into users (username, password, role, created_at, updated_at) values ('ujikit', '$2a$10$dyIvh1mU41.k5Y7KFVkGh.FpkIplgrvqDbNGad0KaqKn.jJ4fA3f6', 1, NOW(), NOW());
+insert into users (username, password, role, created_at, updated_at) values ('wahyu', '$2a$10$ETJrC9pBLwsQpsldF5qNjeiSi2wfwSr0HR9CEOchWi1jWZ35dnlwK', 2, NOW(), NOW());
+
+== products
+insert into products (name_product, price_product, created_at_product, updated_at_product) values ('Pepsodent', '3000',  NOW(), NOW()), ('Pepsodent', '3000',  NOW(), NOW()), ('Chocolatos', '2500',  NOW(), NOW());
+
+== transactions
+insert into transactions (id_user_transaction, id_product_transaction, created_at_transaction, updated_at_transaction) values
+('1', '1', NOW(), NOW()),
+('1', '2', NOW(), NOW()),
+('3', '1', NOW(), NOW()),
+('3', '2', NOW(), NOW());
