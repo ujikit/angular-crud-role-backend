@@ -3,6 +3,7 @@ const app = express()
 const connection = require('express-myconnection')
 const mysql = require('mysql')
 const bodyParser = require("body-parser")
+var cors = require('cors')
 
 // Models
 const product = require('./src/controllers/ProductController')
@@ -19,6 +20,7 @@ app.use(connection(mysql, {
 global.db = connection
 
 // all environments
+app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
 	extended: true
@@ -34,7 +36,7 @@ app.use(function(req, res, next) {
 // routes
 app.post('/login', auth.login)
 app.post('/register', auth.register)
-app.get('/', product.index)
+app.get('/products', product.index)
 
 //Middleware
 const listener = app.listen(8888, function() {
