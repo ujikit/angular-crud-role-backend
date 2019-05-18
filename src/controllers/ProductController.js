@@ -12,15 +12,7 @@ exports.index = function(req, res) {
 		database: ENV.DB_NAME
 	})
 
-	jwt.verify(token, ENV.SECRET_KEY, function(err, decoded) {
-		if (err) return res.status(500).send({
-			auth: false,
-			message: 'Failed to authenticate token.'
-		})
-
-		return res.status(200).send(decoded);
-
-		var sql = `SELECT * FROM users`
+		var sql = `SELECT * FROM products`
 		connection.query(sql, (err, rows) => {
 			if (err) {
 				throw err
@@ -28,7 +20,7 @@ exports.index = function(req, res) {
 			try {
 				return res.status(200).json({
 					status: "success",
-					data: rows[0].id
+					data: rows
 				})
 			} catch (e) {
 				if (e) {
@@ -40,10 +32,5 @@ exports.index = function(req, res) {
 				})
 			}
 		})
-
-
-
-
-	})
 
 }
