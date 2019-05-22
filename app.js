@@ -9,16 +9,6 @@ var cors = require('cors')
 const product = require('./src/controllers/ProductController')
 const auth = require('./src/controllers/AuthController')
 
-app.use(connection(mysql, {
-	host: 'localhost',
-	user: 'root',
-	password: '',
-	port: '3306',
-	database: 'angular_crud_role'
-}, 'single'))
-
-global.db = connection
-
 // all environments
 app.use(cors())
 app.use(bodyParser.json())
